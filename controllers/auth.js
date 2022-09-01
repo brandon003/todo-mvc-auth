@@ -59,9 +59,10 @@ const User = require('../models/User')
   exports.postSignup = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
-    if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
+    if (!validator.isLength(req.body.password, { min: 4 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
     if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
-  
+    // if (req.body.teamName == "") validationErrors.push({ msg: 'Team Name Required' })
+
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
       return res.redirect('../signup')
@@ -71,7 +72,8 @@ const User = require('../models/User')
     const user = new User({
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      // team: req.body.teamName
     })
   
     User.findOne({$or: [
