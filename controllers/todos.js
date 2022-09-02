@@ -10,9 +10,28 @@ module.exports = {
             let teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user
             const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
             
+//             for (const item in teamItems){
+//                 console.log(item.todo);
+//                 for(const member in teamMembers){
+//                     // if(item.userId == member._id){
+//                     //     item.userName = member.userName;
+//                     // }
+//                 }
+//             }
+
+            teamItems.forEach(item=> {
+                teamMembers.forEach(member=>{
+                    if(member._id == item.userId){ 
+                        item.userName = member.userName;
+                        // console.log(true, item.userName, member.userName);
+                    }
+                })
+            })
+
             // teamItems.forEach(item => {
             //     teamMembers.forEach(user => if(user._id == item.userId) item.userName = user.userName
             // })
+
             res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, team: teamItems, teamMembers: teamMembers})
         }catch(err){
             console.log(err)
