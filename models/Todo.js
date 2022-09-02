@@ -13,10 +13,14 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  // teamId: {
-  //   type: String,
-  //   required: true
-  // }
+  dueDate:{
+    type: String,
+    required: false
+  },
+  team: {
+    type: String,
+    required: false
+  }
 })
 
 module.exports = mongoose.model('Todo', TodoSchema)

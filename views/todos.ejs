@@ -10,17 +10,56 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
+    
+    <table>
+        <tr>
+            <th>Your ToDo's</th> 
+            <th>Team ToDo's</th>
+        </tr>
+        <tr>
+            <td>
+                <% todos.forEach( el => { %>
+                <li class='todoItem' data-id='<%=el._id%>'>
+                    <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <span class='del'> Delete </span>
+                    <span >Due Date: <%= el.dueDate %></span>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+                  <!-- <input type="datetime-local" id="due" name="due-date"> -->
+
+
+
+                </li>
+            
+                <% }) %> 
+            </td>
+            <td>
+                <% team.forEach( el => { %>
+                    <li class='todoItem' data-id='<%=el._id%>'>
+                        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                        <span>Due Date: <%=el.dueDate%></span>
+                        <!-- <span class='del'> Delete </span> -->
+                    </li>
+                <% }) %> 
+            </td>
+        </tr>
+
+    
+        
+    </table>
+
+    
+    </ul>
+<!-- included team to the todo view -->
+    <h2><%= user.userName %> from team <%= user.team %> has <%= left %> things left to do.</h2>
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <label for="assign">Who's ToDo:</label>
+        <select id="assign" name="teamMember">
+        <% teamMembers.forEach( el => { %>
+            <option value="<%= el._id %>"><%= el.userName %></option>    
+        <% }) %>  
+        </select> 
+        <input type="date" id="dueDate" name="dueDate">   
         <input type="submit">
     </form>
 
