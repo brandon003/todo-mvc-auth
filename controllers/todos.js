@@ -3,13 +3,24 @@ const User = require('../models/User')
 
 module.exports = {
     getTodos: async (req,res)=>{
+        console.log("req.user")
         console.log(req.user)
+        console.log(`Tom: ${req.user.userName}`)
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            let teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user
-            const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
-            
+            const teamItems = await Todo.
+                                        find().
+                                        where('team').equals(req.user.team).
+                                        where('userId').ne(req.user._id)
+            const teamMembers = await User.
+                                        find().
+                                        where('team').equals(req.user.team)
+                                        
+            console.log("teamItems")
+            console.log(teamItems)
+            console.log("teamMembers")
+            console.log(teamMembers)
             // teamItems.forEach(item => {
             //     teamMembers.forEach(user => if(user._id == item.userId) item.userName = user.userName
             // })
@@ -20,11 +31,7 @@ module.exports = {
     },
     createTodo: async (req, res)=>{
         try{
-            let dueDate = req.body.dueDate
-            console.log(`dueDate: ${dueDate}`)
-            let dueDateSliced = dueDate.slice(0,11)
-            console.log(`dueDateSliced: ${dueDateSliced}`)
-            await Todo.create({todo: req.body.todoItem, completed: false, userId: req.body.teamMember, dueDate: dueDateSliced, team: req.user.team})
+            await Todo.create({todo: req.body.todoItem, completed: false, userId: req.body.teamMember, dueDate: req.body.dueDate, team: req.user.team})
             console.log('Todo has been added!')
             res.redirect('/todos')
         }catch(err){
