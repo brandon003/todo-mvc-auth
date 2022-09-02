@@ -7,35 +7,29 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
-            const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
+            // const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
+            // const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
+
             
-//             for (const item in teamItems){
-//                 console.log(item.todo);
-//                 for(const member in teamMembers){
-//                     // if(item.userId == member._id){
-//                     //     item.userName = member.userName;
-//                     // }
-//                 }
-//             }
+            //selects all items that have the same team but do not have the same userId as the current user.
+            const teamItems = await Todo.
+                find().
+                where('team').equals(req.user.team).
+                where('userId').ne(req.user._id)
+            //selects all users that have the same team as the current user
+            const teamMembers = await User.
+                find().
+                where('team').equals(req.user.team)
 
-            let teamItemsFiltered = teamItems.filter( el=> el.userId != req.user.id);
-
-
-            teamItemsFiltered.forEach(item=> { //Adds userName from User collection to team todo object array
+            teamItems.forEach(item=> { //Adds userName from User collection to team todo object array
                 teamMembers.forEach(member=>{
                     if(member._id == item.userId){ 
                         item.userName = member.userName;
-                        // console.log(true, item.userName, member.userName);
                     }
                 })
             })
 
-            // teamItems.forEach(item => {
-            //     teamMembers.forEach(user => if(user._id == item.userId) item.userName = user.userName
-            // })
-
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, team: teamItemsFiltered, teamMembers: teamMembers})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, team: teamItems, teamMembers: teamMembers})
         }catch(err){
             console.log(err)
         }
