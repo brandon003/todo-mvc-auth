@@ -9,10 +9,13 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
+            
+            //selects all items that have the same team but do not have the same userId as the current user.
             const teamItems = await Todo.
                                         find().
                                         where('team').equals(req.user.team).
                                         where('userId').ne(req.user._id)
+            //selects all users that have the same team as the current user
             const teamMembers = await User.
                                         find().
                                         where('team').equals(req.user.team)
