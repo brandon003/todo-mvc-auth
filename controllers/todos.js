@@ -11,7 +11,6 @@ module.exports = {
         completed: false,
       });
 
-<<<<<<< HEAD
             
             //selects all items that have the same team but do not have the same userId as the current user.
             const teamItems = await Todo.
@@ -23,9 +22,8 @@ module.exports = {
             const teamMembers = await User.
                 find().
                 where('team').equals(req.user.team)
-=======
+                
       // console.log(todoItems);
->>>>>>> b62cc5b8f9d01ff6bf402f2c13c1a558c2bdaf3a
 
       // const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
       // const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
