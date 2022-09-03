@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
   todo: {
@@ -11,16 +11,21 @@ const TodoSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true
+    required: true,
   },
-  dueDate:{
+  dueDate: {
     type: String,
-    required: false
+    required: false,
+  },
+  status: {
+    type: String,
+    default: "not started",
+    required: false,
   },
   team: {
     type: String,
-    required: false
-  }
-})
+    required: false,
+  },
+});
 
-module.exports = mongoose.model('Todo', TodoSchema)
+module.exports = mongoose.model("Todo", TodoSchema);
