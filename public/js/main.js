@@ -39,6 +39,8 @@ async function deleteTodo() {
 
 async function markComplete() {
   const todoId = this.parentNode.dataset.id;
+  console.log('todoId:',todoId);
+
   try {
     const response = await fetch("todos/markComplete", {
       method: "put",
@@ -85,8 +87,10 @@ async function markIncomplete() {
 async function todoStatus() {
   const todoId = this.parentNode.dataset.id;
   const statusVal = this.parentNode.dataset.status;
-  console.log("statusVal:", statusVal);
+  const val = this.parentNode.dataset.value;
   console.log("todoId:", todoId);
+  console.log("statusVal:", statusVal);
+  console.log("val:", val);
   try {
     const response = await fetch("todos/updateStatus", {
       method: "put",

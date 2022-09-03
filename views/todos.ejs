@@ -26,7 +26,7 @@
                     <span class='del'> Delete </span>
                     <span >Due Date: <%= el.dueDate %></span>
                     <!--dropdown status menu here-->
-                    <select name="status" class="statusDropdown" >
+                    <select name="status" data-id='<%=el._id%>' class="statusDropdown" >
                         <option value=""><%= el.status %></option>
                         <option value="not_started">Not Started</option>
                         <option value="in_progress">In Progress</option>
@@ -59,6 +59,8 @@
 <!-- included team to the todo view -->
 <!--took out 'Team' for better readability -JB -->
     <h2><%= user.userName %> from <%= user.team %> has <%= left %> things left to do.</h2>
+
+<!--Form requests createTodo for todo item  -->
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <label for="assign">Who's ToDo:</label>

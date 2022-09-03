@@ -5,23 +5,23 @@ module.exports = {
   getTodos: async (req, res) => {
     // console.log(req.user);
     try {
-      const todoItems = await Todo.find({ userId: req.user.id });
-      const itemsLeft = await Todo.countDocuments({
-        userId: req.user.id,
-        completed: false,
-      });
+        const todoItems = await Todo.find({ userId: req.user.id });
+        const itemsLeft = await Todo.countDocuments({
+            userId: req.user.id,
+            completed: false,
+        });
 
             
-            //selects all items that have the same team but do not have the same userId as the current user.
-            const teamItems = await Todo.
-                find().
-                where('team').equals(req.user.team).
-                where('userId').ne(req.user._id)
-                
-            //selects all users that have the same team as the current user
-            const teamMembers = await User.
-                find().
-                where('team').equals(req.user.team)
+        //selects all items that have the same team but do not have the same userId as the current user.
+        const teamItems = await Todo.
+            find().
+            where('team').equals(req.user.team).
+            where('userId').ne(req.user._id)
+            
+        //selects all users that have the same team as the current user
+        const teamMembers = await User.
+            find().
+            where('team').equals(req.user.team)
 
       // console.log(todoItems);
 
@@ -43,13 +43,13 @@ module.exports = {
 
       // console.log(req.user.status);
 
-      teamItems.forEach((item) => {
-        teamMembers.forEach((member) => {
-          if (member._id == item.userId) {
-            item.userName == member.status;
-          }
-        });
-      });
+    //   teamItems.forEach((item) => {
+    //     teamMembers.forEach((member) => {
+    //       if (member._id == item.userId) {
+    //         item.userName == member.status;
+    //       }
+    //     });
+    //   });
 
       res.render("todos.ejs", {
         todos: todoItems,

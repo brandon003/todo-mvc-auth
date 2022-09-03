@@ -13,16 +13,16 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dueDate: {
+  dueDate: { //New
     type: String,
     required: false,
   },
-  status: {
+  status: { //New
     type: String,
     default: "not started",
     required: false,
   },
-  team: {
+  team: { //New
     type: String,
     required: false,
   },
