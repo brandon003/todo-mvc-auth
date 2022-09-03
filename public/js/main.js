@@ -16,7 +16,7 @@ Array.from(todoComplete).forEach((el) => {
 });
 
 Array.from(updateStatus).forEach((el) => {
-  el.addEventListener("click", todoStatus);
+  el.addEventListener("change", todoStatus);
 });
 
 async function deleteTodo() {
