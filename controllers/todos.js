@@ -16,6 +16,7 @@ module.exports = {
                 find().
                 where('team').equals(req.user.team).
                 where('userId').ne(req.user._id)
+                
             //selects all users that have the same team as the current user
             const teamMembers = await User.
                 find().
