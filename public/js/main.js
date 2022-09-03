@@ -1,7 +1,7 @@
 const deleteBtn = document.querySelectorAll(".del");
 const todoItem = document.querySelectorAll("span.not");
 const todoComplete = document.querySelectorAll("span.completed");
-const updateStatus = document.querySelectorAll("statusDropdown");
+const updateStatus = document.querySelectorAll(".statusDropdown");
 
 Array.from(deleteBtn).forEach((el) => {
   el.addEventListener("click", deleteTodo);
@@ -76,21 +76,16 @@ async function markIncomplete() {
 }
 
 /*
-
 <img class="spaceship cruiserX3" src="shipX3.png"
   data-ship-id="324" data-weapons="laserI laserII" data-shields="72%"
   data-x="414354" data-y="85160" data-z="31940"
   onclick="spaceships[this.dataset.shipId].blasted()">
-
 */
 
 async function todoStatus() {
   const todoId = this.parentNode.dataset.id;
-  const statusVal = this.parentNode.dataset.status;
-  const val = this.parentNode.dataset.value;
-  console.log("todoId:", todoId);
-  console.log("statusVal:", statusVal);
-  console.log("val:", val);
+  const statusVal = this.value;
+  console.log("todoId:", todoId, statusVal);
   try {
     const response = await fetch("todos/updateStatus", {
       method: "put",

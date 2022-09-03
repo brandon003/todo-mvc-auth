@@ -37,12 +37,9 @@ module.exports = {
         })
 
       //added for dropdown
-      const todoStatus = await Todo.find()
-        .where("status")
-        .equals(req.user.status);
-
-      // console.log(req.user.status);
-
+    //   const todoStatus = await Todo.find()
+    //     .where("status")
+    //     .equals(req.user.status);
     //   teamItems.forEach((item) => {
     //     teamMembers.forEach((member) => {
     //       if (member._id == item.userId) {
@@ -90,7 +87,7 @@ module.exports = {
           status: req.body.status,
         }
       );
-      console.log("Status Updated");
+      console.log(req.body, "Status Updated");
       res.json("Status Updated");
     } catch (err) {
       console.log(err);
