@@ -78,7 +78,7 @@ module.exports = {
         completed: false,
         userId: req.body.teamMember,
         dueDate: dueDateSliced,
-        status: "not started",
+        status: "Not Started",
         team: req.user.team,
       });
       console.log("Todo has been added!");

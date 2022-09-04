@@ -19,7 +19,7 @@ const TodoSchema = new mongoose.Schema({
   },
   status: { //New
     type: String,
-    default: "not started",
+    default: "Not Started",
     required: false,
   },
   team: { //New
