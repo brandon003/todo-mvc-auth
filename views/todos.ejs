@@ -25,6 +25,7 @@
                     <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                     <span class='del'> Delete </span>
                     <span >Due Date: <%= el.dueDate %></span>
+                    
                     <!--dropdown status menu here-->
                     <span>Status: </span>
                     <select name="status" data-id='<%=el._id%>' class="statusDropdown" >
