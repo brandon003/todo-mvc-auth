@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <!-- added a welcome to the user - JB-->
+    <h1>Welcome, <%= user.userName %> </h1>
+    <h2>Todos</h2>
     <ul>
     
     <table>
@@ -23,10 +25,15 @@
                     <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                     <span class='del'> Delete </span>
                     <span >Due Date: <%= el.dueDate %></span>
-
-                  <!-- <input type="datetime-local" id="due" name="due-date"> -->
-
-
+                    
+                    <!--dropdown status menu here-->
+                    <span>Status: </span>
+                    <select name="status" data-id='<%=el._id%>' class="statusDropdown" >
+                        <option value="<%= el.status %>" selected><%= el.status %></option>
+                        <option value="not_started">Not Started</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option> 
+                    </select> 
 
                 </li>
             
@@ -35,8 +42,10 @@
             <td>
                 <% team.forEach( el => { %>
                     <li class='todoItem' data-id='<%=el._id%>'>
-                        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo +" Assigned to:"+el.userName %></span>
                         <span>Due Date: <%=el.dueDate%></span>
+                        <span>Status: <%=el.status%> </span>
+                       
                         <!-- <span class='del'> Delete </span> -->
                     </li>
                 <% }) %> 
@@ -50,7 +59,10 @@
     
     </ul>
 <!-- included team to the todo view -->
-    <h2><%= user.userName %> from team <%= user.team %> has <%= left %> things left to do.</h2>
+<!--took out 'Team' for better readability -JB -->
+    <h2><%= user.userName %> from <%= user.team %> has <%= left %> things left to do.</h2>
+
+<!--Form requests createTodo for todo item  -->
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <label for="assign">Who's ToDo:</label>
