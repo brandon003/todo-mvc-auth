@@ -17,7 +17,7 @@ module.exports = {
         // Counts all items in todo collection where status does not equal 'completed'
         const itemsLeft = await Todo.countDocuments().
             where('userId').equals(req.user.id).
-            where('status').ne('completed');
+            where('status').ne('Completed');
 
             
         //selects all items that have the same team but do not have the same userId as the current user.

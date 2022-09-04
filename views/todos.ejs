@@ -22,7 +22,9 @@
             <td>
                 <% todos.forEach( el => { %>
                 <li class='todoItem' data-id='<%=el._id%>'>
-                    <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <!-- Removed class for completed and not completed -->
+                    <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> -->
+                    <span><%= el.todo %></span> 
                     <span class='del'> Delete </span>
                     <span >Due Date: <%= el.dueDate %></span>
 
@@ -51,7 +53,9 @@
             <td>
                 <% team.forEach( el => { %>
                     <li class='todoItem' data-id='<%=el._id%>'>
-                        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo +" Assigned to:"+el.userName %></span>
+                        <!-- Removed class for completed and not completed -->
+                        <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo +" Assigned to:"+el.userName %></span> -->
+                        <span><%= el.todo +" Assigned to:"+el.userName %></span>
                         <span>Due Date: <%=el.dueDate%></span>
                         <span>Status: <%=el.status%> </span>
                        
