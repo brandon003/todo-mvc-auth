@@ -36,13 +36,14 @@ module.exports = {
       // const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
       // const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
 
-        teamItems.forEach(item => { //Adds userName from User collection to team todo object array
-            teamMembers.forEach(member => {
-                if (member._id == item.userId) {
-                    item.userName = member.userName;
-                }
-            })
+
+      teamItems.forEach(item => { //Adds userName from User collection to team todo object array
+        teamMembers.forEach(member => {
+            if (member._id == item.userId) {
+                item.userName = member.userName;
+            }
         })
+    })
 
       //added for dropdown
     //   const todoStatus = await Todo.find()
