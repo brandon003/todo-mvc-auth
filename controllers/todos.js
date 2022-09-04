@@ -5,28 +5,37 @@ module.exports = {
   getTodos: async (req, res) => {
     // console.log(req.user);
     try {
-      const todoItems = await Todo.find({ userId: req.user.id });
-      const itemsLeft = await Todo.countDocuments({
-        userId: req.user.id,
-        completed: false,
-      });
+        const todoItems = await Todo.find({ userId: req.user.id });
+
+
+        // const itemsLeft = await Todo.countDocuments({
+        //     userId: req.user.id,
+        //     completed: false,
+        // }); 
+        
+
+        // Counts all items in todo collection where status does not equal 'completed'
+        const itemsLeft = await Todo.countDocuments().
+            where('userId').equals(req.user.id).
+            where('status').ne('completed');
 
             
-            //selects all items that have the same team but do not have the same userId as the current user.
-            const teamItems = await Todo.
-                find().
-                where('team').equals(req.user.team).
-                where('userId').ne(req.user._id)
-                
-            //selects all users that have the same team as the current user
-            const teamMembers = await User.
-                find().
-                where('team').equals(req.user.team)
-                
+        //selects all items that have the same team but do not have the same userId as the current user.
+        const teamItems = await Todo.
+            find().
+            where('team').equals(req.user.team).
+            where('userId').ne(req.user._id);
+            
+        //selects all users that have the same team as the current user
+        const teamMembers = await User.
+            find().
+            where('team').equals(req.user.team);
+
       // console.log(todoItems);
 
       // const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
       // const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
+
 
       teamItems.forEach(item => { //Adds userName from User collection to team todo object array
         teamMembers.forEach(member => {
@@ -35,20 +44,18 @@ module.exports = {
             }
         })
     })
+
       //added for dropdown
-      const todoStatus = await Todo.find()
-        .where("status")
-        .equals(req.user.status);
-
-      // console.log(req.user.status);
-
-      teamItems.forEach((item) => {
-        teamMembers.forEach((member) => {
-          if (member._id == item.userId) {
-            item.userName == member.status;
-          }
-        });
-      });
+    //   const todoStatus = await Todo.find()
+    //     .where("status")
+    //     .equals(req.user.status);
+    //   teamItems.forEach((item) => {
+    //     teamMembers.forEach((member) => {
+    //       if (member._id == item.userId) {
+    //         item.userName == member.status;
+    //       }
+    //     });
+    //   });
 
       res.render("todos.ejs", {
         todos: todoItems,
@@ -89,7 +96,7 @@ module.exports = {
           status: req.body.status,
         }
       );
-      console.log("Status Updated");
+      console.log(req.body, "Status Updated");
       res.json("Status Updated");
     } catch (err) {
       console.log(err);
