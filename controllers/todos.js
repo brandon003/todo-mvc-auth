@@ -8,7 +8,7 @@ module.exports = {
         const todoItems = await Todo.find({ userId: req.user.id });
         const itemsLeft = await Todo.countDocuments({
             userId: req.user.id,
-            completed: false,
+            status: 'completed',
         });
 
             
