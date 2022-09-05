@@ -1,44 +1,62 @@
-# Introduction
+# TeamTask - Task Managing Web App
 
-A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
+A simple and collaborative fullstack Task managing App, built for Teams and Individuals to track and manage their tasks, keeping the workspace productive and organized.
 
----
 
+**Link to project:** https://github.com/brandon003/todo-mvc-auth
+
+![main page](public/images/Screen%20Shot%202022-09-05%20at%201.39.27%20PM.png)
+![sign up](public/images/Screen%20Shot%202022-09-05%20at%201.39.57%20PM.png)
+![login](public/images/Screen%20Shot%202022-09-05%20at%201.40.46%20PM.png)
 > Be sure to add that lovely star 😀 and fork it for your own copy
 
 ---
 
-# Objectives
+# How it's made
 
-- It's a beginner level app created to understand how MVC concept and logins are added
+**Tech used:** EJS, CSS, JavaScript, Node, Express, MongoDB and passport.js.
+
+**Notable Dependencies:**
+
+* connect-mongo (https://www.npmjs.com/package/connect-mongo)
+   - Used to save cookie in database that allowed for user's session to persist.
+* dotenv (https://www.npmjs.com/package/dotenv)
+   - Intergration of .env file that allows protection and processing of environment variables.
+* express-session (https://www.npmjs.com/package/express-session)
+   - Middleware that aids formating of user session cookie data. Used in cooperation with 'connect-mongo' to store the session in the database.
+* mongoose (https://mongoosejs.com/)
+   - Schema-based solution to model application data. Used to validate/organize database user and story entries.
+* morgan (https://www.npmjs.com/package/morgan)
+   - Node. js and Express middleware to log HTTP requests and errors. Used to simply process of testing/troubleshooting during development.
+* passport (https://www.passportjs.org/)
+   - Authentication middleware for Node.js. Used to modularize the authentication process with OAuth and Google login.
+* passport-local (https://www.passportjs.org/packages/passport-local/)
+   - The local authentication strategy authenticates users using a username and password.
+* ejs- local (https://ejs.co/)
+   - embeded javascript templating language for the frontend.
+* bcrypt (https://www.npmjs.com/package/bcrypt)
+   - A library to help you hash passwords.
 
 ---
 
-# Who is this for? 
+# Lessons Learned:
 
-- It's for beginners & intermediates with little more experience, to help understand the various aspects of building a node app with some complex features
+In using the MVC Structure for our CRUD application, we learned how data flows from the model to the view to the controller. We learned to apply our data to let a user create a task, assign that task to themselves or another teamate, pick a due date for the task, and apply a dropdown for status updates. 
 
----
-
-# Packages/Dependencies used 
-
-bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
+Our biggest challenge was showing the status updates for the team task views.  In the future We would like to implement administative roles, a team dashboard, and add a choice for Google Authentication for login.  
 
 ---
 
-# Install all the dependencies or node packages used for development via Terminal
+# Collaborators:
 
-`npm install` 
+[Brandon Lobo](https://github.com/brandon003)
 
----
+[Melvin Lucas](https://github.com/LucasMelvin15)
 
-# Things to add
+[Jamie Brolund](https://github.com/JamieLouBrolund)
 
-- Create a `.env` file and add the following as `key: value` 
-  - PORT: 2121 (can be any port example: 3000) 
-  - DB_STRING: `your database URI` 
- ---
- 
- Have fun testing and improving it! 😎
+[Christo Landry](https://github.com/christolandry)
 
+[Frederico Chaves](https://github.com/fedechaves)
 
+[Youness Tantaoui](https://github.com/yuness001)
