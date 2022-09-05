@@ -2197,7 +2197,7 @@ input, select, textarea {
 
 	#header {
 		position: relative;
-		background-image: url("../images/header.jpg");
+		background-image: url("../images/header.gif");
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
@@ -2278,7 +2278,7 @@ input, select, textarea {
 
 		body.homepage #header:after {
 			content: '';
-			background: #1C0920;
+			background: #1c0920c5;
 			display: block;
 			position: absolute;
 			left: 0;
