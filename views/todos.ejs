@@ -26,6 +26,7 @@
             <th class="table-titles">Team <%= user.team.toUpperCase() %> ToDo's</th>
         </tr>
         <tr class="tr">
+
             <!-- User todo list with dropdown -->
             <td class="table-content">
                 <% todos.forEach( el => { %>
@@ -56,6 +57,7 @@
                         <span>Due Date: <%=el.dueDate%></span>
                         <span>Status: <%=el.status%> </span>
                         <!-- <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span> -->
+
                     </li>
                     <% }) %> 
                 </td>
