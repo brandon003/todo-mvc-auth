@@ -52,20 +52,32 @@
                         <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo +" Assigned to:"+el.userName %></span>
                         <span>Due Date: <%=el.dueDate%></span>
                         <span>Status: <%=el.status%> </span>
+<<<<<<< HEAD
                         <!-- <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span> -->
                        
                         <!-- <span class='del'> Delete </span> -->
+=======
+                        <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span>
+>>>>>>> 92f37b4d7fcb2c3ef80d85fed52441e0fa6eaac3
                     </li>
-                <% }) %> 
-            </td>
-        </tr>
+                    <% }) %> 
+                </td>
 
-    
-        
-    </table>
-
-    
+                <td>
+                    <!-- Adds team members todo items -->
+                    <% team.forEach( el => { %>
+                        <li class='todoItem' data-id='<%=el._id%>'>
+                            <span><%= el.todo +" Assigned to:"+el.userName %></span>
+                            <span>Due Date: <%=el.dueDate%></span>
+                            <span>Status: <%=el.status%> </span>
+                        </li>
+                    <% }) %> 
+                </td>
+            </tr>
+            
+        </table>
     </ul>
+
 <!-- included team to the todo view -->
 <!--took out 'Team' for better readability -JB -->
     <!-- <h2><%= user.userName %> from <%= user.team %> has <%= left %> things left to do.</h2> -->
@@ -73,6 +85,7 @@
         <input id="todo-input" type="text" placeholder="Enter Todo Item" name='todoItem'>
         <label id="whos-todo" for="assign">Who's ToDo:</label>
         <select class="input-buttons" id="assign" name="teamMember">
+
         <% teamMembers.forEach( el => { %>
             <option value="<%= el._id %>"><%= el.userName == user.userName ? "ME" : el.userName %></option>    
         <% }) %>  
