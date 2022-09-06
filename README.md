@@ -47,6 +47,14 @@ Our biggest challenge was showing the status updates for the team task views.  I
 
 ---
 
+# How to Get it Working:
+
+Add a .env file in the config folder with these two values:
+* PORT = 2121 //or whatever you choose
+* DB_STRING =  //MongoDB connection string
+
+---
+
 # Collaborators:
 
 [Brandon Lobo](https://github.com/brandon003)
