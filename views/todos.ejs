@@ -26,22 +26,24 @@
             <th class="table-titles">Team ToDo's</th>
         </tr>
         <tr class="tr">
+            
             <td class="table-content">
                 <% todos.forEach( el => { %>
                 <li class='todoItem' data-id='<%=el._id%>'>
                     <span class='<%= el.completed === true ? 'completed' : 'not'%> '><%= el.todo %></span>
                     <span id="due-date" >Due Date: <%= el.dueDate ? el.dueDate : 'undefined' %></span>
-                    <!--dropdown status menu here-->
-                    <select name="status" class="statusDropdown" >
-                        <!-- <option value=""><%= el.status %></option> -->
-                        <option value="not_started">Not Started</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>  
-                    </select> 
+                    <!-- todo status dropdown menu here-->
+                    <select name="status" data-id='<%=el._id%>' class="statusDropdown">
+                        <option value="<%= el.status %>" selected>  <%= el.status %> </option>
+                        <% let options=["Not Started", "In Progress" , "Completed" ] %>
+                        <% options.forEach( option=> { %>
+                            <% if(option !==el.status) { %>
+                                <option value="<%= option %>"> <%= option %> </option>
+                            <% } %>
+                        <% }) %>
+                    </select>
                     <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span>
-
                 </li>
-            
                 <% }) %> 
             </td>
             <td class="table-content">
@@ -50,7 +52,7 @@
                         <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo +" Assigned to:"+el.userName %></span>
                         <span>Due Date: <%=el.dueDate%></span>
                         <span>Status: <%=el.status%> </span>
-                        <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span>
+                        <!-- <span id="delete-button" class="del fa-sharp fa-solid fa-trash"></span> -->
                        
                         <!-- <span class='del'> Delete </span> -->
                     </li>
