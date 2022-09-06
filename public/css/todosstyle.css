@@ -22,11 +22,19 @@ body{
     text-decoration: underline;
 } */
 
+
+/* Added rule to align todo items up top */
+td{
+    vertical-align: text-top;
+}
+
+
 .input-buttons,.statusDropdown{
     background-color: rgba(52, 113, 246,0.7);
     font-family: 'Lexend Deca', sans-serif;
     height: 30px;
-    font-weight: bolder;
+    /* font-weight: bolder; */
+    text-align: center;
     font-size: 1vw;
     border-radius: 5px;
     /* border: 1px solid black; */
