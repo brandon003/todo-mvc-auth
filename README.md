@@ -5,9 +5,10 @@ A simple and collaborative fullstack Task managing App, built for Teams and Indi
 
 **Link to project:** https://github.com/brandon003/todo-mvc-auth
 
-![main page](public/images/Screen%20Shot%202022-09-05%20at%201.39.27%20PM.png)
-![sign up](public/images/Screen%20Shot%202022-09-05%20at%201.39.57%20PM.png)
-![login](public/images/Screen%20Shot%202022-09-05%20at%201.40.46%20PM.png)
+![login](public/images/loginScreenShot.png)
+![signup](public/images/signupScreenShot.png)
+![dashboard page](public/images/team-task-gif.gif)
+
 > Be sure to add that lovely star 😀 and fork it for your own copy
 
 ---

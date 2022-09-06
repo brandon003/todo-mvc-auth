@@ -24,7 +24,7 @@
             <!-- table header with 2 columns -->
             <tr>
                 <th class="table-titles">Your ToDo's</th> 
-                <th class="table-titles">Team <%= user.team.toUpperCase() %> ToDo's</th>
+                <th class="table-titles"><%= user.team.toUpperCase() %> ToDo's</th>
             </tr>
             
             <!-- table body One row two columns -->
@@ -86,7 +86,6 @@
         <input class="input-buttons" type="date" id="dueDate" name="dueDate">   
         <input class="input-buttons" type="submit">
     </form>
-
     
 
     <script src="js/main.js"></script>
