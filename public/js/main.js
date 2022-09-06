@@ -1,6 +1,6 @@
 const deleteBtn = document.querySelectorAll(".del");
-const todoItem = document.querySelectorAll("span.not");
-const todoComplete = document.querySelectorAll("span.completed");
+// const todoItem = document.querySelectorAll("span.not");
+// const todoComplete = document.querySelectorAll("span.completed");
 const updateStatus = document.querySelectorAll(".statusDropdown");
 
 Array.from(deleteBtn).forEach((el) => {
