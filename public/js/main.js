@@ -7,13 +7,13 @@ Array.from(deleteBtn).forEach((el) => {
   el.addEventListener("click", deleteTodo);
 });
 
-Array.from(todoItem).forEach((el) => {
-  el.addEventListener("click", markComplete);
-});
-
-Array.from(todoComplete).forEach((el) => {
-  el.addEventListener("click", markIncomplete);
-});
+// Array.from(todoItem).forEach((el) => {
+//   el.addEventListener("click", markComplete);
+// });
+// 
+// Array.from(todoComplete).forEach((el) => {
+//   el.addEventListener("click", markIncomplete);
+// });
 
 Array.from(updateStatus).forEach((el) => {
   el.addEventListener("change", todoStatus);
