@@ -7,19 +7,11 @@ module.exports = {
     try {
         const todoItems = await Todo.find({ userId: req.user.id });
 
-
-        // const itemsLeft = await Todo.countDocuments({
-        //     userId: req.user.id,
-        //     completed: false,
-        // }); 
-        
-
         // Counts all items in todo collection where status does not equal 'completed'
         const itemsLeft = await Todo.countDocuments().
             where('userId').equals(req.user.id).
-            where('status').ne('completed');
+            where('status').ne('Completed');
 
-            
         //selects all items that have the same team but do not have the same userId as the current user.
         const teamItems = await Todo.
             find().
@@ -31,39 +23,21 @@ module.exports = {
             find().
             where('team').equals(req.user.team);
 
-      // console.log(todoItems);
-
-      // const teamItems = await Todo.find({team:req.user.team})//gets all items that have the same team as the user, exluding user's todo list
-      // const teamMembers = await User.find({team:req.user.team})//gets all users from the User model
-
-
-      teamItems.forEach(item => { //Adds userName from User collection to team todo object array
-        teamMembers.forEach(member => {
-            if (member._id == item.userId) {
-                item.userName = member.userName;
-            }
+        teamItems.forEach(item => { //Adds userName from User collection to team todo object array
+          teamMembers.forEach(member => {
+              if (member._id == item.userId) {
+                  item.userName = member.userName;
+              }
+          })
         })
-    })
 
-      //added for dropdown
-    //   const todoStatus = await Todo.find()
-    //     .where("status")
-    //     .equals(req.user.status);
-    //   teamItems.forEach((item) => {
-    //     teamMembers.forEach((member) => {
-    //       if (member._id == item.userId) {
-    //         item.userName == member.status;
-    //       }
-    //     });
-    //   });
-
-      res.render("todos.ejs", {
-        todos: todoItems,
-        left: itemsLeft,
-        user: req.user,
-        team: teamItems,
-        teamMembers: teamMembers,
-      });
+        res.render("todos.ejs", {
+          todos: todoItems,
+          left: itemsLeft,
+          user: req.user,
+          team: teamItems,
+          teamMembers: teamMembers,
+        });
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +53,7 @@ module.exports = {
         completed: false,
         userId: req.body.teamMember,
         dueDate: dueDateSliced,
-        status: "not started",
+        status: "Not Started",
         team: req.user.team,
       });
       console.log("Todo has been added!");
